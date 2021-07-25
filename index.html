@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Notes</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+    <title>Notes</title>
+  </head>
+  <body>
+    <h1 id="heading">Notes</h1>
+
+    <form id="note-form">
+      <div class="title-field">
+        <input
+          id="title-text"
+          type="text"
+          placeholder="Your title"
+          required
+        />
+      </div>
+      <div class="note-field">
+        <input
+          id="note-text"
+          type="text"
+          placeholder="Your note"
+          required
+        />
+      </div>
+<div class= "button-container">
+      <button id="save-note" type="submit">Add Note</button>
+    </div>
+      </form>
+    </form>
+    <div id="container"></div>
+  </body>
 </html>

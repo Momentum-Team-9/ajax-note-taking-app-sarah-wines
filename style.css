@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  padding-left: 40px;
+  padding-top: 40px;
+}
+#note-form {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 240px;
+  border: solid gray 2px;
+
+  margin: 40px;
+}
+.title-field {
+  margin-bottom: 20px;
+  border-radius: 10%;
+}
+#title-text {
+  height: 40px;
+  width: 215px;
+}
+
+#save-note {
+  margin-top: 20px;
+  border-radius: 5%;
+  width: 215px;
+}
+
+#save-note {
+  background-color: ;
+  padding: 10px;
+  border: solid yellowgreen 2px;
+}
+#note-text {
+  width: 215px;
+  height: 150px;
+}
+
+.noteCard {
+  width: 240px;
+  height: 220px;
+  border: solid gray 2px;
+  margin: 20px;
+}
+
+.title,
+.body {
+  padding: 20px;
+}
+.title {
+  font-size: 28px;
+}
+.body {
+  padding-bottom: 40px;
+}
+#delete-note {
+  width: 216px;
+  height: 40px;
+  border: solid red;
+}
+
+.button-cont {
+  padding-left: 10px;
+}
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px;
+}
