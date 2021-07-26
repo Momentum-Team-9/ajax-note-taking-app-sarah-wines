@@ -5,7 +5,7 @@ const input = document.querySelector('#title-text');
 const outputDiv = document.getElementById('container');
 let clearOutput = false;
 let formIsValid;
-let noteCardCont = document.querySelectorAll('noteCardCont');
+let noteCardCont = document.getElementById('noteCardCont');
 function listNotes() {
   fetch(url)
     .then((response) => response.json())
@@ -22,10 +22,10 @@ function listNotes() {
 }
 
 function renderNote(noteItem, note) {
-  noteItem.innerHTML = `<form class="noteCardCont"><div class="noteCard"><div class="title"> ${note.title}</div><div class="body"> ${note.body}</div><div class="button-cont">
+  noteItem.innerHTML = `<form id="noteCardCont"><div class="noteCard"><div class="title"> ${note.title}</div><div class="body"> ${note.body}</div><div class="button-cont">
   <button class="edit-note"
   type="edit"
->Edit</button></div><div class="button-cont"><button
+>Edit</button></div><div id=delete class="button-cont"><button
   class="delete-note"
   type="delete"
 >Delete</button></div></div></form>`;
@@ -55,14 +55,15 @@ function createNote(titleText, noteText) {
     .then((data) => console.log(data));
 }
 
-noteCardCont.addEventListener('click', function (event) {
-  console.log('delete');
-  deleteNote(event.target);
-});
+// // Delete -- Does not work
+// noteCardCont.addEventListener('click', function (event) {
+//   console.log('delete');
+//   deleteNote(event.target);
+// });
 
-function deleteNote(element) {
-  const noteId = element.parentElement.id;
-  fetch(`http://localhost:3000/notes` + '/' + `${noteId}`, {
-    method: 'DELETE',
-  }).then(() => element.parentElement.remove());
-}
+// // function deleteNote(element) {
+//   const noteId = element.parentElement.id;
+//   fetch(`http://localhost:3000/notes` + '/' + `${noteId}`, {
+//     method: 'DELETE',
+//   }).then(() => element.parentElement.remove());
+// }
