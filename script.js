@@ -5,7 +5,7 @@ const input = document.querySelector('#title-text');
 const outputDiv = document.getElementById('container');
 let clearOutput = false;
 let formIsValid;
-
+let noteCardCont = document.querySelectorAll('noteCardCont');
 function listNotes() {
   fetch(url)
     .then((response) => response.json())
@@ -22,10 +22,13 @@ function listNotes() {
 }
 
 function renderNote(noteItem, note) {
-  noteItem.innerHTML = `<div class="noteCard"><div class="title"> ${note.title}</div><div class="body"> ${note.body}</div><div class="button-cont"><button
-  id="delete-note"
+  noteItem.innerHTML = `<form class="noteCardCont"><div class="noteCard"><div class="title"> ${note.title}</div><div class="body"> ${note.body}</div><div class="button-cont">
+  <button class="edit-note"
+  type="edit"
+>Edit</button></div><div class="button-cont"><button
+  class="delete-note"
   type="delete"
->Delete</button></div></div>`;
+>Delete</button></div></div></form>`;
 }
 
 listNotes();
@@ -34,24 +37,17 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   const titleText = document.getElementById('title-text').value;
   const noteText = document.getElementById('note-text').value;
-  console.log(titleText, noteText);
   form.reset();
   createNote(titleText, noteText);
 });
 
 function createNote(titleText, noteText) {
-  // I am making a POST request so that I can add
-  // a new todo to my database.
   fetch(url, {
-    // I need to send some extra information with this request
-    // specifically i am sending the value of my input on the DOM
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       title: titleText,
       body: noteText,
-      // here I am creating a new key and using moment().format()
-      // to create a time string that captures when the new todo was created
       create_at: moment().format(),
     }),
   })
@@ -59,27 +55,14 @@ function createNote(titleText, noteText) {
     .then((data) => console.log(data));
 }
 
-// function renderNote(noteObj) {
-//     const itemEl = document.createElement('li')
-//     itemEl.id = todoObj.id
-//     itemEl.classList.add(
-//       // These strings are TACHYONS class names
-//       'lh-copy',
-//       'pv3',
-//       'ba',
-//       'bl-0',
-//       'bt-0',
-//       'br-0',
-//       'b--dotted',
-//       'b--black-3')
+noteCardCont.addEventListener('click', function (event) {
+  console.log('delete');
+  deleteNote(event.target);
+});
 
-//     renderTodoText(itemEl, todoObj)
-//     console.log(itemEl)
-//     todoList.appendChild(itemEl)
-//   }
-
-// This function is taking two arguments: a todo <li> a todo object.
-
-// function renderTodoText (todoListItem, todoObj) {
-//     todoListItem.innerHTML = `<span class="dib w-60">${todoObj.body}</span><i class="ml2 dark-red fas fa-times delete"></i><i class="ml3 fas fa-edit edit"></i>`
-//   }
+function deleteNote(element) {
+  const noteId = element.parentElement.id;
+  fetch(`http://localhost:3000/notes` + '/' + `${noteId}`, {
+    method: 'DELETE',
+  }).then(() => element.parentElement.remove());
+}
